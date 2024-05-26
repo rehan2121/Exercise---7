@@ -1,0 +1,69 @@
+import random
+
+def menu():
+    a = "1. Coffee 1$\n2. Pastry 2$\n3. Special Cakes 3$\n"
+    return print(a)
+
+menu()
+
+def card_or_cash():
+    cash = input("Pay With Card Or Cash: ")
+    if cash.lower() == "card":
+        print("\nThe Payment Is Done With Card")
+    elif cash.lower() == "cash":
+        print("\nThe Payment Is Done With Cash")
+    else:
+        print("\nInvalid payment method. Please try again.")
+        card_or_cash()
+
+def take_time():
+    tt = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    time = random.choice(tt)
+    print(f"The Order Is Ready In {time} Minutes")
+
+def order_twice():
+    ask_again = input("\nWant To Order Again (No/Yes): ")
+    if ask_again.lower() == "no":
+        print("Thank you for your order!")
+        quit()
+    elif ask_again.lower() == "yes":
+        user_input()
+    else:
+        print("Invalid input. Please enter 'Yes' or 'No'.")
+        order_twice()
+
+def user_input():
+    try:
+        u_i = int(input("Enter The Dish Number: "))
+        money = 0
+
+        if u_i == 1:
+            money = "1 $"
+            card_or_cash()
+            print("\nYour Order Is - Coffee", money)
+            take_time()
+        
+        elif u_i == 2:
+            money = "2 $"
+            card_or_cash()
+            print("\nYour Order Is - Pastry", money)
+            take_time()
+        
+        elif u_i == 3:
+            money = "3 $"  # Corrected the price for Special Cake
+            card_or_cash()
+            print("\nYour Order Is - Special Cake", money)
+            take_time()
+        
+        else:
+            print("Invalid dish number. You ordered nothing - ", money)
+        
+        order_twice()
+    except ValueError:
+        print("Please enter a valid dish number.")
+        user_input()
+
+user_input()
+
+greet = "We loved having you here and can't wait to welcome you back soon!"
+print(greet.center(50))
